@@ -114,6 +114,8 @@ public struct ChatCompletionParameters: Encodable {
       let toolCalls: [ToolCall]?
       /// Tool call that this message is responding to.
       let toolCallID: String?
+      /// Prefix Tag for Deepseek Model
+      let prefix: Bool
       
       public enum ContentType: Encodable {
          
@@ -252,6 +254,7 @@ public struct ChatCompletionParameters: Encodable {
          case functionCall = "function_call"
          case toolCalls = "tool_calls"
          case toolCallID = "tool_call_id"
+         case prefix
       }
       
       public init(
@@ -262,7 +265,8 @@ public struct ChatCompletionParameters: Encodable {
          audio: Audio? = nil,
          functionCall: FunctionCall? = nil,
          toolCalls: [ToolCall]? = nil,
-         toolCallID: String? = nil)
+         toolCallID: String? = nil,
+         prefix: Bool = false)
       {
          self.role = role.rawValue
          self.content = content
@@ -272,6 +276,7 @@ public struct ChatCompletionParameters: Encodable {
          self.functionCall = functionCall
          self.toolCalls = toolCalls
          self.toolCallID = toolCallID
+         self.prefix = prefix
       }
    }
    
